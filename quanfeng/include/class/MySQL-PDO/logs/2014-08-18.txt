@@ -1,0 +1,3 @@
+Time : 03:16:16
+SQLSTATE[HY000]: General error: 1140 Mixing of GROUP columns (MIN(),MAX(),COUNT(),...) with no GROUP columns is illegal if there is no GROUP BY clause
+Raw SQL : SELECT count(ticket_id),ldf_active FROM ldf_ticket_info WHERE ldf_number = :number

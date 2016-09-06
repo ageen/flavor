@@ -1,0 +1,43 @@
+Time : 15:56:26
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Raw SQL : SELECT * FROM q_message ORDER BY date_time DESC LIMIT 1,
+
+Time : 15:56:00
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Raw SQL : SELECT * FROM q_message ORDER BY date_time DESC LIMIT 1,
+
+Time : 15:55:59
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Raw SQL : SELECT * FROM q_message ORDER BY date_time DESC LIMIT 1,
+
+Time : 14:32:18
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY date_time DESC' at line 1
+Raw SQL : SELECT * FROM q_message LIMIT 6 ORDER BY date_time DESC
+
+Time : 14:32:09
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDERBY date_time DESC' at line 1
+Raw SQL : SELECT * FROM q_message LIMIT 6 ORDERBY date_time DESC
+
+Time : 14:32:02
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDERBY date_time DESC' at line 1
+Raw SQL : SELECT * FROM q_message LIMIT 6 ORDERBY date_time DESC
+
+Time : 14:18:12
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO q_message(nickname,content,date_time)VALUES(:nickname,:content,:date_time)
+
+Time : 14:17:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO q_message(nickname,content,date_time)VALUES(:nickname,:content,:date_time)
+
+Time : 14:17:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO q_message(nickname,content,date_time)VALUES(:nickname,:content,:date_time)
+
+Time : 14:16:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO q_message(nickname,content,date_time)VALUES(:nickname,:content,:date_time)
+
+Time : 13:39:17
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'data_time' in 'field list'
+Raw SQL : INSERT INTO q_message(nickname,content,data_time)VALUES(:nickname,:content,:date_time)

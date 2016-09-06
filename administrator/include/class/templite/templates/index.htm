@@ -1,0 +1,218 @@
+<html>
+<head>
+<title>Document Title</title>
+	{* popup_init must be called once at the top of the page *}
+	{ popup_init src="./templates/javascripts/overlib/overlib.js" }
+</head>
+<body>
+{* this is a comment *}
+<!--
+	{* Array *}
+	{ $foo }
+	{ $foo[0] }
+	{ $foo.2 }
+	{ assign var=key value=1 }
+	{ $foo[$key] }
+	{ $foo.$key }
+-->
+<!--
+	//	Associative Arrays
+	{ $foo.fruit }
+	{ $foo.dairy }
+	{ $foo.vegetable }
+-->
+
+<!--
+<ul>
+	{section name=item loop=$foo}
+	<li>{ "test `$foo[item]` test" }</li>
+	{/section}
+</ul>
+-->
+<!--
+{ config_load file="config.ini" }
+{ #test# }
+-->
+<!--
+	{ $foo . $name }
+ <br />
+	{ $foo." ".$name }
+ <br />
+	{ $foo, $name }
+ <br />
+	{ $foo, " ", $name }
+-->
+<!--
+	{* display value of page from URL (GET) http://localhost/da/ *}
+	{ $templatelite[GET][PAGE] }
+	{ $templatelite.GET.PAGE }
+-->
+
+<!--
+{* name = the name of the captured block *}
+
+	{ capture assign=varel  name=testcapture}
+	  Now is the time to test things out.
+	{/capture}
+	{ $varel|upper }
+
+
+	{ $templatelite[CAPTURE][testcapture] }
+	{ $templatelite.CAPTURE.testcapture }
+-->
+<!--
+{ config_load file="config.ini" }
+	{ $templatelite.CONFIG.test }
+-->
+<!--
+	{* defined PI=3.14159 *}
+	{ $templatelite[CONST][PI] }
+	{ $templatelite.CONST.PI }
+-->
+
+<!--
+	{ $templatelite.COOKIE.three }
+
+	{ $templatelite.ENV.PATH }
+
+	{ $templatelite.GET.page }
+   
+	{ $templatelite.NOW }
+	{ $templatelite.LDELIM }
+	{ $templatelite.RDELIM }
+-->
+
+<!--
+	{section name=player_number loop=$player_id}
+	<p>
+	  Player ID: {$player_id[player_number]}<br />
+	  Player Name: {$player_name[player_number]}
+	</p>
+	{/section}
+	{ $templatelite.SERVER.SERVER_NAME }
+	{ $templatelite.SESSION.id }
+	{ $templatelite[SESSION][id] }
+	{ $templatelite.TEMPLATE }
+	{ $templatelite.VERSION }
+-->
+
+	{* uppercase the title *}
+	<h2>{ $title|upper }</h2>
+
+	{* truncate the topic to 40 characters and use '...' at the end *}
+	Topic: { $topic|truncate:40:"..." }
+
+	{* uppercase and truncate the topic *}
+	Topic: { $topic|truncate:40:"..."|upper }
+<br />
+	{ "This will be [b]bold[/b]. My website is 
+	[url=http://www.paullockaby.com/]paullockaby.com[/url]."|bbcode2html }
+<br />
+	{ "This is some text."|capitalize }
+<br />
+	{ "This Is Some TEXT"|cat:" for you." }
+<br />
+	{ "This Is Some TEXT"|count_characters }
+	{ "This Is Some TEXT"|count_characters:true }
+<br />
+	{ "Hi there everyone.\nThis is for you."|count_paragraphs }
+<br>
+	{ "Hi there everyone. This is for you."|count_sentences }
+<br>
+	{ "Hi there everyone"|count_words }
+<br>
+	{ $var|@count }
+<br>
+	{ $templatelite[NOW]|date:"n/j/Y g:ia" }
+	{ $templatelite[NOW]|date:"l, F j, Y" }
+<br>
+	{ $templatelite[NOW]|date_format:" %I:%M %p" }
+	{ $templatelite[NOW]|date_format:"%A, %B %e, %Y" }
+<br>
+	{ $variable|default:"nothing" }
+	{ $value|default:"something" }
+<br>
+	{ "'This Is Some TEXT'"|escape }
+	{ "'This Is Some TEXT'"|escape:"url" }
+<br>
+	{ "This Is Some TEXT"|indent:10 }
+<br>
+	{ "This Is Some TEXT"|indent:1:"\t" }
+<br>
+	{ "Infertility unlikely to\nbe passed on, experts say."|regex_replace:" /[\r\t\n]/":" " }
+<br>
+	{ "I hate beans."|replace:"hate":"like" }
+<br>
+	{ $articleTitle|spacify}
+	{ $articleTitle|spacify:"^^"}
+<br>
+	{ "Number %d is a %s."|string_format:"45":"pitcher" }
+<br>
+	{ "Grandmother of\neight makes\t    hole in one." }<br>
+
+	{ "Grandmother of\neight makes\t    hole in one."|strip }<br>
+
+	{ "Grandmother of\neight makes\t    hole in one."|strip:" " }<br>
+	{ "Might we make this sentence a little shorter, not a long run-on?"|truncate }
+	{ "Might we make this sentence a little shorter, not a long run-on?"|truncate:50:"..." }
+	{ "Might we make this sentence a little shorter, not a long run-on?"|truncate:50:"...":true }
+<br>
+{ "my stuff"|urlencode }
+<br>
+	{ assign var="test" value="this is a test variable"|upper }
+	The value of $test is { $test }.
+<br>
+	{ config_load file="config.ini" }
+	{ #test# }
+<br>
+	{ foreach value=contact from=$contacts }
+		{ foreach key=key value=item from=$contact }
+			{ $key }: { $item }<br>
+		{ /foreach }
+	{ /foreach }
+<br>
+	{ for start=0 stop=10 step=2 value=current }
+	We are on number { $current }
+	{ /for }
+
+	{ for start=0 stop=1 step=0.2 value=current }
+	We are on number { $current }
+	{ /for }
+<br>
+<!--	{ insert name="stuffandjunk" }
+	{ insert name="othercrap" var="hi" }
+--><br>
+	{ literal }
+		Here is an example: { config_load file="config.conf" }
+	{ /literal }
+<br>
+	{ php }
+		echo "Hello to " . "<BR>";
+	{ /php }
+<br>
+	{ strip}
+		<A HREF="{ $url }">
+			<font color="red">This is a test</font>
+		</A>
+	{ /strip }
+<br>
+	{ textformat wrap=10 }
+		This is a special test of the 20 wrap.
+	{ /textformat }
+<br>
+{ html_radios name="test" }
+<br>
+	{ html_select_date }
+<br>
+	{ html_select_time use_24_hours=true }
+<br>
+	{* create a link with a popup window when you move your mouse over *}
+		<a href="mypage.html" {popup text="This link takes you to my page!"}>mypage</a>
+	{* you can use html, links, etc in your popup text *}
+		<a href="mypage.html" {popup sticky=true caption="mypage contents" 
+		text="<ul><li>links</li><li>pages</li><li>images</li></ul>" 
+		snapx=10 snapy=10}>mypage</a>
+<br>
+	{resize_image img_src="./thumbnails/" directory="./html/mysite/ad_images/" thumbdir="./html/mysite/thumbnails/" filename="Myfile.jpg" xscale="150" yscale="200" thumbname="thumb_"}
+</body>
+</html>

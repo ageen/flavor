@@ -1,0 +1,87 @@
+﻿.jscarousal
+{
+	width:980px;
+	background-color: #fff;
+	margin:10px 0 0 0;
+	padding:0;
+	position: relative; /*overflow: hidden;*/
+	overflow:hidden;
+}
+.jscarousal .jscarousal-left, .jscarousal .jscarousal-right
+{
+	height:230px;
+	width:39px;
+	cursor: pointer;
+}
+.jscarousal .jscarousal-left
+{
+	float:left;
+	background:url(../images/gallery_arrow.jpg) no-repeat;;
+}
+.jscarousal .jscarousal-right
+{
+	float:right;
+	background:url(../images/gallery_arrow.jpg) center -252px no-repeat;;
+}
+.jscarousal-contents
+{
+	width: 902px;
+	height: 226px;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	border:1px solid #e0e0e0;
+	border-left:none;
+	border-right:none;
+}
+.jscarousal-contents > div
+{
+	position: absolute;
+	margin:0;
+	padding:5px 0 0 5px;
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+}
+.jscarousal-contents > div > div
+{
+	float: left;
+	margin:0;
+	padding:7px 0 0 6px;
+	width:218px;
+	height:217px;
+	background:url(../images/thumb_frame2.jpg) no-repeat;
+}
+.jscarousal-contents img
+{
+	width:203px;
+	height:203px;
+}
+.hidden
+{
+	display: none;
+}
+.visible
+{
+	display: block;
+}
+.thumbnail-active
+{
+	filter: alpha(opacity=100);
+	opacity: 1.0;
+	cursor: pointer;
+}
+.thumbnail-inactive
+{
+	filter: alpha(opacity=60);
+	opacity: 0.6;
+	cursor: pointer;
+}
+.thumbnail-text
+{
+	color: #7A7677;
+	font-weight: bold;
+	text-align: left;
+	display: block;
+	padding: 10px 2px 2px 0px;
+}
