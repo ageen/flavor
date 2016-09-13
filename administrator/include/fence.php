@@ -10,14 +10,11 @@ function salting($string) {
 
 //	Preventing SQL Injection
 function mysql_fix_string($string){
+	global $idb;
 	if (get_magic_quotes_gpc()) {
 		$string = stripslashes($string);	
 	}
-	if (version_compare(phpversion(),"4.3.0") == "-1"){
-		return mysql_escape_string($string);
-	} else {
-		return mysql_real_escape_string($string);	
-	}
+	return mysqli_real_escape_string($idb->conn, $string);	
 }
 
 //	Preventing HTML Injection
@@ -26,10 +23,11 @@ function mysql_entities_fix_string($string){
 }
 
 function sanitizeString($string){
+	global $idb;
 	$string = strip_tags($string);
 	$string = htmlentities($string);
 	$string = stripslashes($string);
-	return mysql_real_escape_string($string);
+	return mysqli_real_escape_string($idb->conn, $string);
 }
 
 function add_magic_quotes($var){

@@ -23,35 +23,21 @@ class opera_db {
 		if (defined('DB_COLLATE')) {
 			$this->collate = DB_COLLATE;	
 		}
-		
-		$this->conn = @mysql_connect($dbhost, $dbuser, $dbpassword, true);
+		$this->conn = new mysqli($dbhost, $dbuser, $dbpassword, $dbname);
 		if (!$this->conn) {
 			$this->print_error("This either means that the username and password information in your <code>config.php</code> file is incorrect or we can't contact the database server at <code>$dbhost</code>. This could mean your host's database server is down.
 			", "error establishing a database connection");
 			return;
 		}
-		
-		$this->ready = true;
-
-		if (!empty($this->charset) && version_compare(mysql_get_server_info($this->conn), '4.1.0', '>=')) {
-			mysql_query("SET NAMES $this->charset");
+		if(!mysqli_set_charset($this->conn, "utf8")){
+			printf("Error loading character set utf8: %s\n", mysqli_error($this->conn));	
 		}
-		
-		$this->select($dbname);
 	}
 	
 	function __destruct() {
 		return true;
 	}
 	
-	function select($db) {
-		if (!@mysql_select_db($db, $this->conn)) {
-			$this->ready = false;
-			$this->print_error("We were able to connect to the database server (which means your username and password is okay) but not able to select the <code>$db</code> database.", "Can&#8217;t select database");
-			return;
-		}
-	}
-
 	function query_insert($feed, $table) {
 		$feed = add_magic_quotes($feed);
 		$fields = array_keys($feed);
@@ -75,35 +61,35 @@ class opera_db {
 	}
 	
 	function query_ex($term) {
-			if ($this->result = mysql_query($term, $this->conn)) {
-				return $this->result;
-			} else {
-				return false;
-			}
+		if ($this->result = mysqli_query($this->conn, $term)) {
+			return $this->result;
+		} else {
+			return false;
+		}
 	}
 	
 	function return_array($result, $type) {
 		if ($type == 'num') {
-			return $this->row = @mysql_fetch_array($result, MYSQL_NUM);
+			return $this->row = @mysqli_fetch_array($result, MYSQLI_NUM);
 		} elseif ($type == 'assoc') {
-			return $this->row = @mysql_fetch_array($result, MYSQL_ASSOC);	
+			return $this->row = @mysqli_fetch_array($result, MYSQLI_ASSOC);	
 		} else {
-			return $this->row = @mysql_fetch_array($result);
+			return $this->row = @mysqli_fetch_array($result);
 		}
 	}
 	
 	function return_num($result) {
-		return $this->num = mysql_num_rows($result);
+		return $this->num = mysqli_num_rows($result);
 	}
 	
 	function free_result($result) {
-		@mysql_free_result($result);	
+		@mysqli_free_result($result);	
 	}
 	
 	function print_error($str = '', $title = '') {
 		global $EZSQL_ERROR;
 		if($str == ''){
-			$str = mysql_error($this->conn);	
+			$str = mysqli_error($this->conn);	
 		}
 		
 		$EZSQL_ERROR[] = array('error_str' => $str);

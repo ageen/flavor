@@ -1,13 +1,12 @@
 <?php
 require_once("global.php");
-if(isset($_GET["mode"])){
+if($_GET["mode"]){
 	$mode=$_GET["mode"];		
 }else{
 	bm_die("参数不正确！");
 }
 $pagestart = 0;
 $pagelimit = 8;
-
 switch($mode):
 	case "article":
 		$sql = "SELECT * FROM f_article WHERE draft = 0 ORDER BY publish_time DESC";

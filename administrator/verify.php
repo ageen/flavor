@@ -6,9 +6,9 @@ $x_size	= "65";
 $y_size	= "32";
 $code	= random(4);
 set_cookie('verify_code',$code);
-@header("Expires: -1");
-@header("Cache-Control: no-store, private, post-check=0, pre-check=0, max-age=0", FALSE);
-@header("Pragma: no-cache");
+header("Expires: -1");
+header("Cache-Control: no-store, private, post-check=0, pre-check=0, max-age=0", FALSE);
+header("Pragma: no-cache");
 
 if(function_exists('imagecreate') && function_exists('imagecolorset') && function_exists('imagecopyresized') && function_exists('imagecolorallocate') && function_exists('imagesetpixel') && function_exists('imagechar') && function_exists('imagecreatefromgif') && function_exists('imagepng')) {
 
@@ -46,7 +46,6 @@ if(function_exists('imagecreate') && function_exists('imagecolorset') && functio
 	imagedestroy($im);
 
 } else {
-
 	$numbers = array
 		(
 		0 => array('3c','66','66','66','66','66','66','66','66','3c'),

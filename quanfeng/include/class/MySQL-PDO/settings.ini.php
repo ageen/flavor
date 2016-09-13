@@ -2,6 +2,6 @@
 [SQL]
 host = localhost
 port = 3306
-user = liuxin
-password = liuxin@mysql
+user = xlark
+password = c83MXTC8eWczx26U
 dbname = lx_flavor

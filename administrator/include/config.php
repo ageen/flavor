@@ -1,6 +1,6 @@
 <?php
-define("DB_USER", "liuxin");
-define("DB_PASSWORD", "liuxin@mysql");
+define("DB_USER", "xlark");
+define("DB_PASSWORD", "c83MXTC8eWczx26U");
 define("DB_NAME", "lx_flavor");
 define("DB_HOST", "localhost");
 define("DB_CHARSET", "utf8");
